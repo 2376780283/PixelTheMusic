@@ -361,7 +361,12 @@ class RealRepository(
         roomRepository.favoritePlaylistLiveData(context.getString(R.string.favorites))
 
     override suspend fun suggestions(): List<Song> {
-        return NotPlayedPlaylist().songs().shuffled().takeIf { it.size > 9 } ?: emptyList()
+        val notPlayedSongs = NotPlayedPlaylist().songs().shuffled()
+        return if (notPlayedSongs.isNotEmpty()) {
+            notPlayedSongs
+        } else {
+            allSongs().shuffled().take(8)
+        }
     }
 
     override suspend fun genresHome(): Home {

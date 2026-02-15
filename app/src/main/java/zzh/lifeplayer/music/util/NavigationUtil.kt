@@ -40,18 +40,18 @@ object NavigationUtil {
         val sessionId = audioSessionId
         if (sessionId !== AudioEffect.ERROR_BAD_VALUE) {
             try {
-                Intent(activity, ActivityMusic::class.java)
-                    .apply {
-                        putExtra(AudioEffect.EXTRA_AUDIO_SESSION, sessionId)
-                        putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
-                    }
-                    .also { intent ->
-                        activity.startActivityForResult(intent, 0)
-                        activity.overridePendingTransition(R.anim.retro_fragment_open_enter, 0)
-                    }
+                Intent(activity, ActivityMusic::class.java).apply {
+                    putExtra(AudioEffect.EXTRA_AUDIO_SESSION, sessionId)
+                    putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
+                }.also { intent ->
+                    activity.startActivityForResult(intent, 0)
+                    activity.overridePendingTransition(R.anim.retro_fragment_open_enter, R.anim.retro_fragment_close_exit)
+                }
             } catch (e: Exception) {
                 activity.showToast(R.string.no_equalizer)
             }
+        } else {
+            activity.showToast(R.string.no_equalizer)
         }
     }
 }

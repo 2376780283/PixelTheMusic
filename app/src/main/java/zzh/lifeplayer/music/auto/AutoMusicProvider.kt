@@ -248,8 +248,7 @@ class AutoMusicProvider(
                 .subTitle(
                     MusicUtil.getPlaylistInfoString(
                         mContext,
-                        topPlayedRepository.notRecentlyPlayedTracks().takeIf { it.size > 9 }
-                            ?: emptyList(),
+                        topPlayedRepository.notRecentlyPlayedTracks().shuffled().take(8),
                     )
                 )
                 .asBrowsable()
