@@ -4,11 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-    <!--   
-    <zzh.lifeplayer.music.views.HomeImageLayout
-        android:id="@+id/imageLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" /> -->
 
     <LinearLayout
         android:orientation="vertical"
@@ -20,140 +15,245 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:liftOnScroll="true">
+            app:liftOnScroll="true"
+            android:elevation="4dp">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 style="@style/Toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="none"
-                app:title="Equalizer Tool"
+                app:title="effects"
                 app:navigationIcon="@drawable/ic_arrow_back"
                 app:titleTextAppearance="@style/ToolbarTextAppearanceNormal" />
 
         </com.google.android.material.appbar.AppBarLayout>
-        <Switch
-            android:id="@+id/effToggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="2dip"
-            android:paddingLeft="20dip"
-            android:paddingRight="20dip" />
 
         <TextView
             android:id="@+id/noEffectsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:ellipsize="marquee"
-            android:fadingEdge="horizontal"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/no_effects"
-            android:layout_weight="1"
             android:visibility="gone" />
+
         <ScrollView
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical">
 
             <LinearLayout
                 android:id="@+id/contentSoundEffects"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <Spinner
-                    android:id="@+id/eqSpinner"
-                    android:layout_width="wrap_content"
+                <!-- Master Toggle Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="?android:attr/listPreferredItemHeight"
-                    android:drawSelectorOnTop="true" />
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
 
-                <include layout="@layout/music_eq" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp">
 
-                <LinearLayout
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="effects"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <Switch
+                            android:id="@+id/effToggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Equalizer Presets Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="eq presets"
+                            android:textSize="14sp"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:layout_marginBottom="12dp" />
+
+                        <Spinner
+                            android:id="@+id/eqSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:drawSelectorOnTop="true" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Equalizer Bands Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <include layout="@layout/music_eq" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Bass Boost Card -->
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/bBLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="?android:attr/listPreferredItemHeight"
-                    android:gravity="center_vertical"
-                    android:paddingRight="?android:attr/scrollbarSize"
-                    android:layout_marginLeft="15dip"
-                    android:layout_marginRight="6dip"
-                    android:layout_marginTop="6dip"
-                    android:layout_marginBottom="6dip"
-                    android:orientation="horizontal"
-                    android:background="@android:drawable/list_selector_background">
-                    <TextView
-                        android:id="@+id/bBStrengthText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:ellipsize="marquee"
-                        android:fadingEdge="horizontal"
-                        android:text="@string/bass_boost_strength" />
-                    <SeekBar
-                        android:id="@+id/bBStrengthSeekBar"
-                        android:layout_width="170dip"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="2dip"
-                        android:paddingLeft="20dip"
-                        android:paddingRight="20dip" />
-                </LinearLayout>
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
 
-                <LinearLayout
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/bBStrengthText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/bass_boost_strength"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="12dp" />
+
+                        <SeekBar
+                            android:id="@+id/bBStrengthSeekBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Virtualizer Card -->
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/vILayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="?android:attr/listPreferredItemHeight"
-                    android:gravity="center_vertical"
-                    android:paddingRight="?android:attr/scrollbarSize"
-                    android:layout_marginLeft="15dip"
-                    android:layout_marginRight="6dip"
-                    android:layout_marginTop="6dip"
-                    android:layout_marginBottom="6dip"
-                    android:orientation="horizontal"
-                    android:background="@android:drawable/list_selector_background">
-                    <TextView
-                        android:id="@+id/vIStrengthText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:ellipsize="marquee"
-                        android:fadingEdge="horizontal"
-                        android:text="@string/virtualizer_strength" />
-                    <SeekBar
-                        android:id="@+id/vIStrengthSeekBar"
-                        android:layout_width="170dip"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="2dip"
-                        android:paddingLeft="20dip"
-                        android:paddingRight="20dip" />
-                    <Switch
-                        android:id="@+id/vIStrengthToggle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="2dip"
-                        android:paddingLeft="20dip"
-                        android:paddingRight="20dip" />
-                </LinearLayout>
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
 
-                <Spinner
-                    android:id="@+id/prSpinner"
-                    android:layout_width="fill_parent"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="12dp">
+
+                            <TextView
+                                android:id="@+id/vIStrengthText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/virtualizer_strength"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <Switch
+                                android:id="@+id/vIStrengthToggle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+                        <SeekBar
+                            android:id="@+id/vIStrengthSeekBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Reverb Presets Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="?android:attr/listPreferredItemHeight"
-                    android:drawSelectorOnTop="true"
-                    android:visibility="gone" />
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="reverb presets"
+                            android:textSize="14sp"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:layout_marginBottom="12dp" />
+
+                        <Spinner
+                            android:id="@+id/prSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:drawSelectorOnTop="true" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
+
         </ScrollView>
+
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
