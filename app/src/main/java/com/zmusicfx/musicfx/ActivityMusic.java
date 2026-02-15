@@ -285,9 +285,12 @@ public class ActivityMusic extends AbsThemeActivity implements OnSeekBarChangeLi
         findViewById(R.id.vIStrengthText).setLabelFor(R.id.vIStrengthSeekBar);
 //        bannerImage = findViewById(R.id.bannerImage);
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationOnClickListener(v -> {
-            finish();
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        @Override
+          public void onClick(View v) {
+            finish();         
             overridePendingTransition(R.anim.retro_fragment_open_enter, R.anim.retro_fragment_close_exit);
+          }
         });
         
         // Fill array with presets from AudioEffects call.
@@ -600,7 +603,8 @@ public class ActivityMusic extends AbsThemeActivity implements OnSeekBarChangeLi
      */
     private void updateUI() {
         final boolean isEnabled = ControlPanelEffect.getParameterBoolean(mContext,
-                mCallingPackageName, mAudioSession, ControlPanelEffect.Key.global_enabled);        
+                mCallingPackageName, mAudioSession, ControlPanelEffect.Key.global_enabled);
+        mToggleSwitch.setChecked(isEnabled);
         setEnabledAllChildren((ViewGroup) findViewById(R.id.contentSoundEffects), isEnabled);
         updateUIHeadset();
 

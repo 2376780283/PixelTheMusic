@@ -208,9 +208,10 @@ class HomeFragment : AbsMainActivityFragment(R.layout.fragment_home), IScrollHel
 
         if (songs.isEmpty()) {
             showEmptySuggestionsState()
-        } else {
-            loadSuggestionsWithSongs(songs)
+            return
         }
+        // 正常加载有歌曲的情况
+        loadSuggestionsWithSongs(songs)
     }
 
     private fun showEmptySuggestionsState() {
@@ -226,6 +227,7 @@ class HomeFragment : AbsMainActivityFragment(R.layout.fragment_home), IScrollHel
                 binding.suggestions.image8,
             )
         val color = accentColor()
+        // 隐藏所有图片或显示占位符
         images.forEach { imageView ->
             Glide.with(this).load(R.drawable.default_audio_art).into(imageView)
         }
@@ -234,6 +236,8 @@ class HomeFragment : AbsMainActivityFragment(R.layout.fragment_home), IScrollHel
             setOnClickListener(null)
             text = "Nothing"
         }
+        //    binding.suggestions.message.text = "Nothing"
+        //    binding.suggestions.message.setOnClickListener(null)
     }
 
     private fun loadSuggestionsWithSongs(songs: List<Song>) {
@@ -250,6 +254,8 @@ class HomeFragment : AbsMainActivityFragment(R.layout.fragment_home), IScrollHel
             )
 
         val color = accentColor()
+
+        // 设置消息区域
         binding.suggestions.message.apply {
             setTextColor(color)
             setOnClickListener {
@@ -265,6 +271,7 @@ class HomeFragment : AbsMainActivityFragment(R.layout.fragment_home), IScrollHel
 
         binding.suggestions.card6.setCardBackgroundColor(ColorUtil.withAlpha(color, 0.12f))
 
+        // 安全地加载歌曲（带边界检查）
         val maxItems = minOf(songs.size, images.size)
 
         for (index in 0 until maxItems) {
@@ -287,6 +294,7 @@ class HomeFragment : AbsMainActivityFragment(R.layout.fragment_home), IScrollHel
                 .into(imageView)
         }
 
+        // 隐藏未使用的imageView
         for (i in maxItems until images.size) {
             images[i].isVisible = false
         }
