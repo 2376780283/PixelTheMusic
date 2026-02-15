@@ -500,57 +500,53 @@ abstract class AbsSlidingMusicPanelActivity :
         animate: Boolean = false,
         hideBottomSheet: Boolean = MusicPlayerRemote.playingQueue.isEmpty(),
     ) {
-     
-        if (visible xor navigationView.isVisible) {
-            val mAnimate = animate //  && bottomSheetBehavior.state == STATE_COLLAPSED
-            if (mAnimate) {
-                if (visible) {
-                    binding.navigationView.isEnabled = true // 允许触摸
+        val mAnimate = animate && bottomSheetBehavior.state == STATE_COLLAPSED
+        
+        if (visible) {
+            if (!navigationView.isVisible || navigationView.alpha < 1f) {
+                if (mAnimate) {
+                    binding.navigationView.isEnabled = true
                     binding.navigationView.isClickable = true
                     setNavigationItemsEnabled(binding.navigationView, true)
+                    binding.navigationView.show()
                     binding.navigationView
                         .animate()
-                        .alpha(1f) // 恢复不透明度
+                        .alpha(1f)
                         .setDuration(300)
                         .withStartAction { binding.navigationView.alpha = 0.4f }
                         .withEndAction {}
                         .start()
                 } else {
-                    // 隐藏导航栏
+                    binding.navigationView.bringToFront()
+                    binding.navigationView.show()
+                    binding.navigationView.isEnabled = true
+                    binding.navigationView.isClickable = true
+                    setNavigationItemsEnabled(binding.navigationView, true)
+                    binding.navigationView.alpha = 1f
+                }
+            }
+        } else {
+            if (navigationView.isVisible || navigationView.alpha > 0f) {
+                if (mAnimate) {
                     binding.navigationView.isEnabled = false
                     binding.navigationView.isClickable = false
                     setNavigationItemsEnabled(binding.navigationView, false)
                     binding.navigationView
                         .animate()
-                        .alpha(0.5f) // 变暗效果 (50%透明度)
+                        .alpha(0.7f)
                         .setDuration(300)
-                        .withEndAction {
-                            binding.navigationView
-                                .animate()
-                                .alpha(0.4f)
-                                .setDuration(100)
-                                .withEndAction {}
-                                .start()
-                        }
+                    //  .withEndAction { binding.navigationView.hide() }
                         .start()
-                }
-            } else {
-                if (visible && bottomSheetBehavior.state != STATE_EXPANDED) {
-                    binding.navigationView.bringToFront()
-                    binding.navigationView.show()
-                    binding.navigationView.isEnabled = true // 允许触摸
-                    binding.navigationView.isClickable = true
-                    setNavigationItemsEnabled(binding.navigationView, true)
-                    binding.navigationView
-                        .animate()
-                        .alpha(1f) // 恢复不透明度
-                        .setDuration(300)
-                        .withStartAction { binding.navigationView.alpha = 0.4f }
-                        .withEndAction {}
-                        .start()
+                } else {
+                    binding.navigationView.isEnabled = false
+                    binding.navigationView.isClickable = false
+                    setNavigationItemsEnabled(binding.navigationView, false)
+                    binding.navigationView.alpha = 0.6f
+                    // binding.navigationView.hide()
                 }
             }
         }
+        
         hideBottomSheet(
             hide = hideBottomSheet,
             animate = animate,

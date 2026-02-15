@@ -16,6 +16,7 @@ import com.github.dhaval2404.imagepicker.util.IntentUtils
  * @since 04 January 2019
  * @version 1.0
  */
+@Suppress("DEPRECATION")
 class GalleryProvider(activity: ImagePickerActivity) : BaseProvider(activity) {
     companion object {
         private const val GALLERY_INTENT_REQ_CODE = 4261

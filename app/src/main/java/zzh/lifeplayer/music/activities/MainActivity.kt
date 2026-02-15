@@ -65,7 +65,7 @@ class MainActivity : AbsSlidingMusicPanelActivity() {
         val startDestinationId = navGraph.startDestinationId
         // Scroll Fragment to top
         navigationView.setOnItemReselectedListener {
-            currentFragment(R.id.fragment_container).apply {
+            currentFragment(navHostId = R.id.fragment_container).apply {
                 if (this is IScrollHelper) {
                     scrollToTop()
                 }
@@ -73,7 +73,7 @@ class MainActivity : AbsSlidingMusicPanelActivity() {
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == startDestinationId) {
-                currentFragment(R.id.fragment_container)?.enterTransition = null
+                currentFragment(navHostId = R.id.fragment_container)?.enterTransition = null
             }
             when (destination.id) {
                 R.id.action_home,
@@ -99,7 +99,7 @@ class MainActivity : AbsSlidingMusicPanelActivity() {
     }
 
     private fun saveTab(id: Int) {
-        if (PreferenceUtil.libraryCategory.firstOrNull { it.category.id == id }?.visible == true) {
+        if (PreferenceUtil.libraryCategory.firstOrNull<CategoryInfo> { it.category.id == id }?.visible == true) {
             PreferenceUtil.lastTab = id
         }
     }

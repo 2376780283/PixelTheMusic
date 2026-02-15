@@ -26,6 +26,7 @@ import zzh.lifeplayer.music.util.Share
 import zzh.lifeplayer.music.util.color.MediaNotificationProcessor
 
 /** Created by hemanths on 2020-02-02. */
+@Suppress("DEPRECATION")
 class ShareInstagramStory : AbsThemeActivity() {
 
     private lateinit var binding: ActivityShareInstagramBinding
