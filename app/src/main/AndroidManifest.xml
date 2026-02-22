@@ -169,11 +169,6 @@
             android:name=".appshortcuts.AppShortcutLauncherActivity"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <!--
-        <activity
-            android:name=".activities.saf.SAFGuideActivity"
-            android:theme="@style/Theme.Intro" />
--->
         <activity
             android:name=".activities.ErrorActivity"
             android:exported="true">
@@ -181,8 +176,6 @@
                 <action android:name="cat.ereza.customactivityoncrash.RESTART" />
             </intent-filter>
         </activity>
-
-        <!-- this music fx -->
         <activity
             android:name="com.zmusicfx.musicfx.ActivityMusic"
             android:theme="@style/Theme.RetroMusic.SplashScreen"
