@@ -60,11 +60,6 @@ class MainSettingsFragment : Fragment(), View.OnClickListener {
         binding.aboutSettings.setOnClickListener(this)
         binding.backupRestoreSettings.setOnClickListener(this)
 
-        binding.buyProContainer.apply {
-            //  isGone = App.isProVersion()
-        }
-        binding.buyPremium.setOnClickListener {}
-
         ThemeStore.accentColor(requireContext()).let {
             binding.buyPremium.setTextColor(it)
             binding.diamondIcon.imageTintList = ColorStateList.valueOf(it)
