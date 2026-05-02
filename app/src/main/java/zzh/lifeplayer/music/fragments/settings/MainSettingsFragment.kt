@@ -59,12 +59,6 @@ class MainSettingsFragment : Fragment(), View.OnClickListener {
         binding.otherSettings.setOnClickListener(this)
         binding.aboutSettings.setOnClickListener(this)
         binding.backupRestoreSettings.setOnClickListener(this)
-
-        ThemeStore.accentColor(requireContext()).let {
-            binding.buyPremium.setTextColor(it)
-            binding.diamondIcon.imageTintList = ColorStateList.valueOf(it)
-        }
-
         binding.container.drawAboveSystemBarsWithPadding()
     }
 
