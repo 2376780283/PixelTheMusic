@@ -192,22 +192,6 @@
             android:name="com.zmusicfx.musicfx.ControlPanelPicker"
             android:excludeFromRecents="true"
             android:exported="false" />
-        <receiver
-            android:name="Compatibility$Receiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <data android:scheme="package" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <data android:scheme="package" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
 
         <service
             android:name="Compatibility$Service"
