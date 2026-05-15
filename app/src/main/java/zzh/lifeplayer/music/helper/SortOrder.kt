@@ -184,6 +184,7 @@ class SortOrder {
         companion object {
 
             /* Playlist sort order A-Z */
+            @Suppress("Deprecation")
             const val PLAYLIST_A_Z = MediaStore.Audio.Playlists.DEFAULT_SORT_ORDER
 
             /* Playlist sort order Z-A */

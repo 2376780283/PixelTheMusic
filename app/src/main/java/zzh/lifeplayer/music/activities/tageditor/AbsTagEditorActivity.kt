@@ -25,7 +25,6 @@ import androidx.viewbinding.ViewBinding
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jaudiotagger.audio.AudioFile
 import org.jaudiotagger.audio.AudioFileIO
@@ -371,7 +370,7 @@ abstract class AbsTagEditorActivity<VB : ViewBinding> : AbsBaseActivity() {
 
         hideFab()
         logD(fieldKeyValueMap)
-        GlobalScope.launch {
+        lifecycleScope.launch {
             if (VersionUtils.hasR()) {
                 cacheFiles =
                     TagWriter.writeTagsToFilesR(
@@ -394,7 +393,7 @@ abstract class AbsTagEditorActivity<VB : ViewBinding> : AbsBaseActivity() {
     }
 
     private fun writeTags(paths: List<String>?) {
-        GlobalScope.launch {
+        lifecycleScope.launch {
             if (VersionUtils.hasR()) {
                 cacheFiles =
                     TagWriter.writeTagsToFilesR(

@@ -28,6 +28,5 @@ jobs:
         with:
           name: PixelMusic-app
           path: |
-            app/build/outputs/apk/release/*.apk
-            app/build/outputs/bundle/release/*.aab
+            app/build/outputs/apk/normal/release/app-normal-arm64-v8a-release.apk
           if-no-files-found: warn

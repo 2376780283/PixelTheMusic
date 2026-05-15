@@ -44,7 +44,7 @@ import zzh.lifeplayer.music.util.FileUtils
 import zzh.lifeplayer.music.util.LyricUtil
 import zzh.lifeplayer.music.util.UriUtil
 
-// import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.lifecycleScope
 class LyricsFragment :
     AbsMainActivityFragment(R.layout.fragment_lyrics), MusicProgressViewUpdateHelper.Callback {
 
@@ -210,7 +210,7 @@ class LyricsFragment :
             ) { _, input ->
                 val fieldKeyValueMap = EnumMap<FieldKey, String>(FieldKey::class.java)
                 fieldKeyValueMap[FieldKey.LYRICS] = input.toString()
-                GlobalScope.launch {
+                lifecycleScope.launch {
                     if (VersionUtils.hasR()) {
                         cacheFile =
                             TagWriter.writeTagsToFilesR(
@@ -268,7 +268,7 @@ class LyricsFragment :
                     } else {
                         val fieldKeyValueMap = EnumMap<FieldKey, String>(FieldKey::class.java)
                         fieldKeyValueMap[FieldKey.LYRICS] = input.toString()
-                        GlobalScope.launch {
+                        lifecycleScope.launch {
                             cacheFile =
                                 TagWriter.writeTagsToFilesR(
                                         requireContext(),

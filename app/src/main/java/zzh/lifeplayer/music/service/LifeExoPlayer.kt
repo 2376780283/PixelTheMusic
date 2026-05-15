@@ -180,7 +180,7 @@ class LifeExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Li
      *
      * @param sessionId The audio session ID
      */
-    @OptIn(UnstableApi::class)
+    @androidx.media3.common.util.UnstableApi
     override fun setAudioSessionId(sessionId: Int): Boolean {
         return try {
             player.audioSessionId = sessionId
@@ -196,7 +196,7 @@ class LifeExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Li
      * @return The current audio session ID.
      */
     override val audioSessionId: Int
-        @OptIn(UnstableApi::class) get() = player.audioSessionId
+        @androidx.media3.common.util.UnstableApi get() = player.audioSessionId
 
     override fun onPlaybackStateChanged(state: Int) {
         if (state == Player.STATE_ENDED) {

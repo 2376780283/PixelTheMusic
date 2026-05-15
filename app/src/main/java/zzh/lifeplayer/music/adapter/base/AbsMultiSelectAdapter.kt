@@ -43,6 +43,7 @@ abstract class AbsMultiSelectAdapter<V : RecyclerView.ViewHolder?, I>(
 
     override fun onDestroyActionMode(mode: ActionMode?) {
         clearChecked()
+        @Suppress("Deprecation")
         activity.window.statusBarColor = Color.TRANSPARENT
         actionMode = null
         onBackPressedCallback.remove()

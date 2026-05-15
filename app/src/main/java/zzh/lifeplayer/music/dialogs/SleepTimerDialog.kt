@@ -157,7 +157,7 @@ class SleepTimerDialog : DialogFragment() {
                         am?.setExact(
                             AlarmManager.ELAPSED_REALTIME_WAKEUP,
                             nextSleepTimerElapsedTime,
-                            pi,
+                            pi!!,
                         )
                         Toast.makeText(
                                 requireContext(),
@@ -180,7 +180,7 @@ class SleepTimerDialog : DialogFragment() {
         timerDisplay.text = "$seekArcProgress min"
     }
 
-    private fun makeTimerPendingIntent(flag: Int): PendingIntent {
+    private fun makeTimerPendingIntent(flag: Int): PendingIntent? {
         return PendingIntent.getService(
             requireActivity(),
             0,

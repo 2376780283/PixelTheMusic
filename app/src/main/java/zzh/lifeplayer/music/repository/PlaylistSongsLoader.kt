@@ -12,6 +12,8 @@
  * See the GNU General Public License for more details.
  */
 
+@file:Suppress("Deprecation")
+
 package zzh.lifeplayer.music.repository
 
 import android.content.Context
@@ -28,7 +30,6 @@ import zzh.lifeplayer.music.model.PlaylistSong
 import zzh.lifeplayer.music.model.Song
 
 /** Created by hemanths on 16/08/17. */
-@Suppress("Deprecation")
 object PlaylistSongsLoader {
 
     @JvmStatic

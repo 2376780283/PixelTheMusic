@@ -74,6 +74,7 @@ import java.io.File;
 import com.bumptech.glide.RequestBuilder;
 import android.graphics.drawable.Drawable;
 import zzh.lifeplayer.music.views.HomeImageLayout;
+@SuppressWarnings("deprecation")
 public class ActivityMusic extends AbsThemeActivity implements OnSeekBarChangeListener {
     private final static String TAG = "MusicFXActivityMusic";
 

@@ -606,6 +606,7 @@ class ClassicPlayerFragment :
             backgroundColor?.let { color ->
                 if (isLandscapeMode()) {
                     val window = requireActivity().window
+                    @Suppress("Deprecation")
                     window?.navigationBarColor.let { navBarColor ->
                         if (navBarColor == null || navBarColor != color) {
                             mainActivity.setNavigationBarColor(color)

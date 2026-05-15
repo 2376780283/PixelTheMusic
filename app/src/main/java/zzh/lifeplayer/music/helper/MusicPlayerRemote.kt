@@ -106,6 +106,7 @@ object MusicPlayerRemote : KoinComponent {
 
     fun bindToService(context: Context, callback: ServiceConnection): ServiceToken? {
 
+        @Suppress("Deprecation")
         val realActivity = (context as Activity).parent ?: context
         val contextWrapper = ContextWrapper(realActivity)
         val intent = Intent(contextWrapper, MusicService::class.java)

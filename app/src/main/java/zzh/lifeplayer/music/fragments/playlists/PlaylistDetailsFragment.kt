@@ -139,6 +139,7 @@ class PlaylistDetailsFragment : AbsMainActivityFragment(R.layout.fragment_playli
                 binding.clearSearch.visibility = View.GONE
             }
         }
+        @OptIn(kotlinx.coroutines.FlowPreview::class)
         lifecycleScope.launch {
             _searchFlow.debounce(300).collect { text -> playlistSongAdapter.onFilter(text) }
         }

@@ -340,6 +340,7 @@ abstract class AbsSlidingMusicPanelActivity :
     private fun animateNavigationBarColor(color: Int) {
         if (VersionUtils.hasOreo()) return
         navigationBarColorAnimator?.cancel()
+        @Suppress("Deprecation")
         navigationBarColorAnimator =
             ValueAnimator.ofArgb(window.navigationBarColor, color).apply {
                 duration = ViewUtil.RETRO_MUSIC_ANIM_TIME.toLong()

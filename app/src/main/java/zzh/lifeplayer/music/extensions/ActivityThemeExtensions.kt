@@ -1,3 +1,5 @@
+@file:Suppress("Deprecation")
+
 package zzh.lifeplayer.music.extensions
 
 import android.app.ActivityManager

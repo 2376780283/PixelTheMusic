@@ -29,16 +29,19 @@ fun AppCompatActivity.applyToolbar(toolbar: MaterialToolbar) {
 }
 
 inline fun <reified T : Any> Activity.extra(key: String, default: T? = null) = lazy {
+    @Suppress("Deprecation")
     val value = intent?.extras?.get(key)
     if (value is T) value else default
 }
 
 inline fun <reified T : Any> Intent.extra(key: String, default: T? = null) = lazy {
+    @Suppress("Deprecation")
     val value = extras?.get(key)
     if (value is T) value else default
 }
 
 inline fun <reified T : Any> Activity.extraNotNull(key: String, default: T? = null) = lazy {
+    @Suppress("Deprecation")
     val value = intent?.extras?.get(key)
     requireNotNull(if (value is T) value else default) { key }
 }
